@@ -21,14 +21,14 @@ function App() {
     <>
       <h1 className="underline text-5xl mt-20 font-semibold">User Details</h1>
       <div className="details">
-        {/* //yaat eta map function jaabo */}
+        
         
 
         <ul>
           {
             details.data?
           details.data.map((detail,index) => (
-            <Card key={index} Name={detail.attributes.Name} Email = {detail.attributes.Email} Number = {detail.attributes.Number}/>
+            <Card key={index} Name={detail.attributes.Name} Email = {detail.attributes.Email} Number = {detail.attributes.Number} ID = {index+1}/>
 
 
           )):'Data LOADING' }
