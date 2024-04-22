@@ -4,7 +4,7 @@ import axios from "axios";
 import Card from "./components/Card";
 import "./App.css";
 import AddDetails from "./components/AddDetails";
-import { addDetails } from "./features/detailsSlice";
+import { addDetails, updateDetails } from "./features/detailsSlice";
 function App() {
   const [details, setDetails] = useState({});
 
@@ -18,11 +18,11 @@ function App() {
         console.log(error);
       });
   }, [AddDetails,details]);
-  console.log(details);
+  
 
   return (
     <div className="text-center m-auto">
-      <AddDetails />
+      <AddDetails/>
       <h1 className="underline text-5xl mt-16 font-semibold">User Details</h1>
       <div className="details">
         <ul>
