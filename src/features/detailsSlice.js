@@ -22,9 +22,8 @@ export const detailsSlice = createSlice({
         });
     },
     removeDetails: (state, action) => {
-      const { id } = action.payload;
       axios
-        .delete(`http://localhost:1337/api/user-details/${id}`)
+        .delete(`http://localhost:1337/api/user-details/${action.payload}`)
         .then((response) => {
           console.log("Resource deleted successfully:", response.data);
         })
