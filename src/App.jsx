@@ -18,27 +18,16 @@ function App() {
         console.log(error);
       });
   }, [AddDetails,details]);
-  console.log(details)
- 
-
+  console.log(details);
 
   return (
-    
     <div className="text-center m-auto">
-    
-      
-      <AddDetails/>
-      {/* <div>
-        <button className="inset-x-0 bg-blue-600 h-12 w-40 float-end m-12 rounded-xl font-semibold hover:bg-white hover:text-black">
-          <i className="ri-add-line me-1"></i>Create Entry
-        </button>
-      </div> */}
-      <h1 className="underline text-5xl mt-20 font-semibold">User Details</h1>
+      <AddDetails />
+      <h1 className="underline text-5xl mt-16 font-semibold">User Details</h1>
       <div className="details">
         <ul>
           {details.data
             ? details.data.map((detail, index) => (
-              
                 <Card
                   key={detail.id}
                   Name={detail.attributes.Name}
@@ -46,7 +35,6 @@ function App() {
                   Number={detail.attributes.Number}
                   ID={detail.id}
                 />
-                
               ))
             : "Data LOADING"}
         </ul>

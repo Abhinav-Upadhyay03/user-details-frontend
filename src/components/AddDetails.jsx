@@ -19,9 +19,12 @@ const AddDetails = () => {
         Number: number,
       })
     )
+    setName("")
+    setEmail("")
+    setNumber("")
   };
   return (
-    <div className="w-8/12 rounded-3xl h-auto bg-gray-500 border border-black m-auto mt-10 space-x-3">
+    <div className="w-8/12 rounded-3xl h-auto bg-gray-700 border border-black m-auto mt-10 space-x-3">
     <h1 className="text-3xl mt-4 font-semibold">Add new Details</h1>
       <form onSubmit={addDetailHandler} className="flex flex-col gap-3">
         <input
@@ -32,7 +35,7 @@ const AddDetails = () => {
           className="bg-white text-black h-12 w-52 p-4 mt-4 m-auto rounded border-gray-700 outline-none"
         />
         <input
-          type="number"
+          type="tel"
           value={number}
           onChange={(e) => setNumber(e.target.value)}
           placeholder="Number"

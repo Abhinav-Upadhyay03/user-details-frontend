@@ -2,11 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const initialState = axios.get("http://localhost:1337/api/user-details");
+// const initialState = axios
+//   .get("http://localhost:1337/api/user-details")
+//   .then((response) => {
+//     console.log("Response fetched");
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
 
 export const detailsSlice = createSlice({
   name: "details",
-  initialState,
+  initialState: {},
   reducers: {
     addDetails: (state, action) => {
       const { Name, Number, Email } = action.payload;
@@ -32,7 +39,7 @@ export const detailsSlice = createSlice({
         });
     },
     updateDetails: (state, action) => {
-      const { id, Name, Number, Email } = action.payload; 
+      const { id, Name, Number, Email } = action.payload;
       const updatedData = {
         data: { Name, Number, Email },
       };
