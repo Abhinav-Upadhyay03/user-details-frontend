@@ -2,16 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-
-
-const initialState = axios.get("http://localhost:1337/api/user-details")
+const initialState = axios.get("http://localhost:1337/api/user-details");
 
 export const detailsSlice = createSlice({
   name: "details",
   initialState,
   reducers: {
     addDetails: (state, action) => {
-      const { Name, Number, Email } = action.payload; 
+      const { Name, Number, Email } = action.payload;
       axios
         .post("http://localhost:1337/api/user-details", {
           data: { Name, Number, Email },
@@ -24,8 +22,9 @@ export const detailsSlice = createSlice({
         });
     },
     removeDetails: (state, action) => {
+      const { id } = action.payload;
       axios
-        .delete(`http://localhost:1337/api/user-details/${action.payload}`)
+        .delete(`http://localhost:1337/api/user-details/${id}`)
         .then((response) => {
           console.log("Resource deleted successfully:", response.data);
         })
@@ -34,28 +33,23 @@ export const detailsSlice = createSlice({
         });
     },
     updateDetails: (state, action) => {
-      const newData = {
-        data: {
-          Name: action.payload.Name,
-          Number: action.payload.Number,
-          Email: action.payload.Email,
-        },
+      const { id, Name, Number, Email } = action.payload; 
+      const updatedData = {
+        data: { Name, Number, Email },
       };
       axios
-        .put(
-          `http://localhost:1337/api/user-details/${action.payload.id}`,
-          newData
-        )
+        .put(`http://localhost:1337/api/user-details/${id}`, updatedData)
         .then((response) => {
           console.log("Resource updated successfully:", response.data);
         })
         .catch((error) => {
-          console.error("Error deleting resource:", error);
+          console.error("Error updating resource:", error);
         });
     },
   },
 });
 
-export const {addDetails, removeDetails, updateDetails} = detailsSlice.actions
+export const { addDetails, removeDetails, updateDetails } =
+  detailsSlice.actions;
 
-export default detailsSlice.reducer
+export default detailsSlice.reducer;
