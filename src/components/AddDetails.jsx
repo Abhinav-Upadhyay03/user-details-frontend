@@ -9,23 +9,20 @@ const AddDetails = () => {
   const dispatch = useDispatch();
 
   const addDetailHandler = (e) => {
-    console.log(name)
-    console.log(email)
-    console.log(number)
     e.preventDefault();
+    window.alert("New Item Added!")
+
     dispatch(
       addDetails({
         Name: name,
         Email: email,
         Number: number,
       })
-    );
-    setName("")
-    setEmail("")
-    setNumber("")
+    )
   };
   return (
     <div className="w-8/12 rounded-3xl h-auto bg-gray-500 border border-black m-auto mt-10 space-x-3">
+    <h1 className="text-3xl mt-4 font-semibold">Add new Details</h1>
       <form onSubmit={addDetailHandler} className="flex flex-col gap-3">
         <input
           type="text"
