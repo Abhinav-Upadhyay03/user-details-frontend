@@ -18,7 +18,8 @@ const AddDetails = ({id, title,Name, Number, Email, Image}) => {
             id: id,
             Name:name,
             Number: number,
-            Email: email
+            Email: email,
+            Image:img,
         })
     )
   }
