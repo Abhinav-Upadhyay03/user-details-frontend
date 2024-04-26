@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addDetails, updateDetails} from "../features/detailsSlice";
-const AddDetails = ({id, title,Name, Number, Email}) => {
+const AddDetails = ({id, title,Name, Number, Email, Image}) => {
   const [name, setName] = useState(Name);
   const [email, setEmail] = useState(Email);
   const [number, setNumber] = useState(Number);
+  const [img,setImg] = useState(Image)
   
-  
+  console.log(img);
   const dispatch = useDispatch();
 
   const editHandler = (e) => {
-    window.alert("Item Updated")
+    window.alert("Item Updated. Refresh to view the changes.")
+    
     dispatch(
         updateDetails({
             id: id,
@@ -22,13 +24,14 @@ const AddDetails = ({id, title,Name, Number, Email}) => {
   }
   const addDetailHandler = (e) => {
     e.preventDefault();
-    window.alert("New Item Added!")
+    window.alert("New Item Added! Refresh to view the changes.")
 
     dispatch(
       addDetails({
         Name: name,
         Email: email,
         Number: number,
+        Image: img,
       })
     )
     setName("")
@@ -58,11 +61,20 @@ const AddDetails = ({id, title,Name, Number, Email}) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder={Email?Email:"Email"}
+          
           className="bg-white text-black h-12 w-52 p-4  m-auto rounded border-gray-700 outline-none"
+        />
+        <input
+          type="file"
+          accept="image/*"
+          // value={img}
+          onChange={(e) => setImg(e.target.files[0])}
+          
+          className=" text-black h-12 w-60 p-4 m-auto rounded border-gray-700 outline-none flex items-center justify-center align-middle"
         />
         <button
           type="submit"
-          className="w-44 m-auto rounded-full mb-4 text-white bg-indigo-500 border-0 py-2 px-6 rounded text-lg"
+          className="w-44 m-auto rounded-full mb-4 text-white bg-indigo-500 border-0 py-2 px-6 text-lg"
         >
           Submit
         </button>

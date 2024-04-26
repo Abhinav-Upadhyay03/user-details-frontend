@@ -16,10 +16,17 @@ export const detailsSlice = createSlice({
   initialState: {},
   reducers: {
     addDetails: (state, action) => {
-      const { Name, Number, Email } = action.payload;
+      const { Name, Number, Email, Image } = action.payload;
+      
+      const formData = new FormData();
+      formData.append('data', JSON.stringify({ Name, Number, Email }));
+      formData.append('files.Profile', Image); 
+      
       axios
-        .post("http://localhost:1337/api/user-details", {
-          data: { Name, Number, Email },
+        .post("http://localhost:1337/api/user-details/", formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data', // Important for file uploads
+          },
         })
         .then((response) => {
           console.log("Resource created successfully:", response.data);

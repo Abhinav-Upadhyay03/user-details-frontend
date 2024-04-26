@@ -10,14 +10,15 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:1337/api/user-details")
+      .get("http://localhost:1337/api/user-details?populate=*")
       .then((response) => {
         setDetails(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [AddDetails,details]);
+  }, [AddDetails]);
+  console.log(details);
   
 
   return (
@@ -33,6 +34,7 @@ function App() {
                   Name={detail.attributes.Name}
                   Email={detail.attributes.Email}
                   Number={detail.attributes.Number}
+                  Image = {detail.attributes.Profile.data.attributes.url}
                   ID={detail.id}
                 />
               ))
