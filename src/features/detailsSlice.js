@@ -12,12 +12,12 @@ export const detailsSlice = createSlice({
 
       const formData = new FormData();
       formData.append("data", JSON.stringify({ Name, Number, Email }));
-      formData.append("files.Profile", Image);
+      formData.append('files.Profile', Image);      //"" throws error.
 
       axios
         .post("http://localhost:1337/api/user-details/", formData, {
           headers: {
-            "Content-Type": "multipart/form-data", // Important for file uploads
+            "Content-Type": "multipart/form-data", 
           },
         })
         .then((response) => {
@@ -44,7 +44,7 @@ export const detailsSlice = createSlice({
       formData.append("data", JSON.stringify({ Name, Number, Email }));
 
       if (Image) {
-        formData.append("files.Profile", Image);
+        formData.append('files.Profile', Image);      //"" -- this here throws an error.
       }
 
       axios
